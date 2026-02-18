@@ -1,4 +1,4 @@
-## 🎯 flutter_show_case_view
+## 🎯flutter_show_case_view
 
 flutter_show_case_view is a reusable Flutter onboarding / coach-mark library that highlights widgets and guides users step-by-step through your application.
 
