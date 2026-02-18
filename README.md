@@ -101,52 +101,166 @@ import 'package:flutter_show_case_view/flutter_show_case_view.dart';
 ```
 2️⃣ Create keys & controller
 ```
-final ShowcaseController controller = ShowcaseController();
+class _HomeScreenState extends State<HomeScreen> {
 
-final GlobalKey profileKey = GlobalKey();
-final GlobalKey fabKey = GlobalKey();
+  final ShowcaseController controller = ShowcaseController();
+
+  final GlobalKey profileKey = GlobalKey();
+  final GlobalKey searchKey = GlobalKey();
+  final GlobalKey fabKey = GlobalKey();
+
 ```
 3️⃣ Wrap widgets
+
+AppBar icon
 ```
 ShowcaseTarget(
   showcaseKey: profileKey,
-  child: Icon(Icons.person),
-);
-
+  child: IconButton(
+    icon: Icon(Icons.person),
+    onPressed: () {},
+  ),
+),
+```
+Any text or button
+```
 ShowcaseTarget(
+  showcaseKey: searchKey,
+  child: Text(
+    "Home Screen",
+    style: TextStyle(fontSize: 24),
+  ),
+),
+```
+Floating Action Button
+```
+floatingActionButton: ShowcaseTarget(
   showcaseKey: fabKey,
   child: FloatingActionButton(
     onPressed: () {},
     child: Icon(Icons.add),
   ),
-);
+),
 ```
 4️⃣ Start tutorial
 ```
-Call inside initState:
-
 @override
 void initState() {
   super.initState();
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
+
     controller.start(context, [
 
       ShowcaseStep(
         targetKey: profileKey,
         title: "Profile",
         description: "Open your profile from here",
+        shape: ShowcaseShape.circle,
+      ),
+
+      ShowcaseStep(
+        targetKey: searchKey,
+        title: "Home Screen",
+        description: "This is your main dashboard",
+        shape: ShowcaseShape.rectangle,
       ),
 
       ShowcaseStep(
         targetKey: fabKey,
         title: "Create",
-        description: "Tap to create new content",
+        description: "Tap to add new content",
         shape: ShowcaseShape.circle,
       ),
 
     ]);
+
   });
+}
+```
+5️⃣ Full Example Screen
+```
+import 'package:flutter/material.dart';
+import 'package:flutter_show_case_view/flutter_show_case_view.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  final ShowcaseController controller = ShowcaseController();
+
+  final GlobalKey profileKey = GlobalKey();
+  final GlobalKey textKey = GlobalKey();
+  final GlobalKey fabKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.start(context, [
+
+        ShowcaseStep(
+          targetKey: profileKey,
+          title: "Profile Button",
+          description: "Open your profile settings here",
+        ),
+
+        ShowcaseStep(
+          targetKey: textKey,
+          title: "Home",
+          description: "This is your main screen",
+          shape: ShowcaseShape.rectangle,
+        ),
+
+        ShowcaseStep(
+          targetKey: fabKey,
+          title: "Add",
+          description: "Create new item using this button",
+        ),
+
+      ]);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Showcase Demo"),
+        actions: [
+          ShowcaseTarget(
+            showcaseKey: profileKey,
+            child: IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {},
+            ),
+          )
+        ],
+      ),
+      body: Center(
+        child: ShowcaseTarget(
+          showcaseKey: textKey,
+          child: const Text(
+            "Welcome",
+            style: TextStyle(fontSize: 26),
+          ),
+        ),
+      ),
+      floatingActionButton: ShowcaseTarget(
+        showcaseKey: fabKey,
+        child: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
 }
 ```
 
