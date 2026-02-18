@@ -30,7 +30,7 @@ Add dependency in your pubspec.yaml
 ```
 dependencies:
   flutter_show_case_view:
-    path: ../flutter_show_case_view
+    path: https://github.com/Excelsior-Technologies-Community/flutter_show_case_view/tree/stage
 ```
 Then run:
 ```
@@ -46,6 +46,49 @@ https://github.com/user-attachments/assets/8a835c08-fe6b-4859-96ff-04fba0f40038
 ------------------------------
 ## 🗂 File Structure
 ```
+flutter_show_case_view/
+│
+├─ lib/
+│   ├─ flutter_show_case_view.dart
+│   │   // Main export file (what users import in their app)
+│   │
+│   ├─src/
+│   │     ├─ controller/
+│   │     │    └─ showcase_controller.dart
+│   │     │        // Handles tutorial flow: start, next, back, skip, finish
+│   │     │
+│   │     ├─ model/
+│   │     │    └─ showcase_step.dart
+│   │     │        // Data model representing a single showcase step
+│   │     │
+│   │     ├─ overlay/
+│   │     │    └─ showcase_overlay.dart
+│   │     │        // Overlay UI displayed above the app with tooltip & buttons
+│   │     │
+│   │     ├─ painter/
+│   │     │    └─ highlight_painter.dart
+│   │     │        // CustomPainter that draws dark background and highlight hole
+│   │     │
+│   │     └─ widget/
+│   │          └─ showcase_target.dart
+│   │             // Wrap any widget you want to highlight
+│   │  
+│   │    
+│   └─ main.dart
+│      // Complete demo showing how to use the package
+│
+│      
+│           
+│
+├─ README.md
+│   // Package documentation
+│
+├─ LICENSE
+│   // MIT License
+│
+└─ pubspec.yaml
+    // Package metadata and dependencies
+
 ```
 
 ------------------------------
